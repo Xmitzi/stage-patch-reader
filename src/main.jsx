@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import StagePatchReader from './stage-patch-reader';
+import App from './stage-patch-reader_(1)';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <StagePatchReader />
+    <App />
   </React.StrictMode>
 );
