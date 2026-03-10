@@ -106,16 +106,14 @@ export default function App() {
         ? { type: "document", source: { type: "base64", media_type: "application/pdf", data: riderBase64 } }
         : { type: "image", source: { type: "base64", media_type: riderMediaType, data: riderBase64 } };
 
-      const headers = { "Content-Type": "application/json" };
-      if (riderMediaType === "application/pdf") headers["anthropic-beta"] = "pdfs-2024-09-25";
-
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
+      const response = await fetch("/api/generate", {
         method: "POST",
-        headers,
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: MODEL,
           max_tokens: 2000,
           system,
+          contentBlock,
           messages: [{ role: "user", content: [contentBlock, { type: "text", text: user }] }],
         }),
       });
